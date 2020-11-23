@@ -17,12 +17,13 @@ import * as React from 'react'
 //   }
 // )
 
-const Globe = React.lazy(() => import('../globe'))
+// *extension2* = the webpack prefetch comment
+const Globe = React.lazy(() => import(/* webpackPrefetch: true */ '../globe'))
 
 // *extension1*
-function loadGlobe() {
-  import('../globe')
-}
+// function loadGlobe() {
+//   import('../globe')
+// }
 
 function App() {
   const [showGlobe, setShowGlobe] = React.useState(false)
@@ -30,7 +31,10 @@ function App() {
   // 🐨 wrap the code below in a <React.Suspense /> component
   // with a fallback.
   return (
-    <div onMouseEnter={loadGlobe} onFocus={loadGlobe}
+    // *extension1*
+    // <div onMouseEnter={loadGlobe} onFocus={loadGlobe}
+
+    <div
       style={{
         display: 'flex',
         alignItems: 'center',
