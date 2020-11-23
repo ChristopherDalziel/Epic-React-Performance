@@ -28,7 +28,7 @@ const Globe = React.lazy(() => import(/* webpackPrefetch: true */ '../globe'))
 function App() {
   const [showGlobe, setShowGlobe] = React.useState(false)
 
-  // 🐨 wrap the code below in a <React.Suspense /> component
+  // 🐨 wrap the code below in a <React.Suspense /> component 
   // with a fallback.
   return (
     // *extension1*
@@ -44,16 +44,16 @@ function App() {
         padding: '2rem',
       }}
     >
+      <label style={{ marginBottom: '1rem' }}>
+        <input
+          type="checkbox"
+          checked={showGlobe}
+          onChange={e => setShowGlobe(e.target.checked)}
+          onMouseOver={e => setShowGlobe(e.target.checked)}
+        />
+        {' show globe'}
+      </label>
       <React.Suspense fallback={<div>loading..</div>}>
-        <label style={{ marginBottom: '1rem' }}>
-          <input
-            type="checkbox"
-            checked={showGlobe}
-            onChange={e => setShowGlobe(e.target.checked)}
-            onMouseOver={e => setShowGlobe(e.target.checked)}
-          />
-          {' show globe'}
-        </label>
         <div style={{ width: 400, height: 400 }}>
           {showGlobe ? <Globe /> : null}
         </div>
