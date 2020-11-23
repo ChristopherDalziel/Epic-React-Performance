@@ -19,6 +19,7 @@ import * as React from 'react'
 
 const Globe = React.lazy(() => import('../globe'))
 
+// *extension1*
 function loadGlobe() {
   import('../globe')
 }
