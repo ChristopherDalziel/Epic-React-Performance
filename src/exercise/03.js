@@ -21,8 +21,8 @@ function Menu({
           getItemProps={getItemProps}
           item={item}
           index={index}
-          selectedItem={selectedItem}
-          highlightedIndex={highlightedIndex}
+          isSelected={selectedItem?.id === item.id}
+          isHighlighted={highlightedIndex === index}
         >
           {item.name}
         </ListItem>
@@ -38,12 +38,15 @@ function ListItem({
   getItemProps,
   item,
   index,
-  selectedItem,
-  highlightedIndex,
+  // selectedItem,
+  // highlightedIndex,
+  // *extesnion2*
+  isSelected,
+  isHighlighted,
   ...props
 }) {
-  const isSelected = selectedItem?.id === item.id
-  const isHighlighted = highlightedIndex === index
+  // const isSelected = selectedItem?.id === item.id
+  // const isHighlighted = highlightedIndex === index
   return (
     <li
       {...getItemProps({
@@ -61,20 +64,24 @@ function ListItem({
 // 🐨 Memoize the ListItem here using React.memo
 // This can wrap the entire function above - it does appear to be a little messy though
 // The second item passed into memo is a custom comparitor
-ListItem = React.memo(ListItem, (prevProps, nextProps) => {
-  // Basically what react does by default
-  if (prevProps.getItemProps !== nextProps.getItemProps) return false
-  if (prevProps.items !== nextProps.items) return false
-  if (prevProps.index !== nextProps.index) return false
-  if (prevProps.selectedItem !== nextProps.selectedItem) return false
-  // How these props are been used - we only care if the current item is highlighed or not
-  if (prevProps.highlightedIndex !== nextProps.highlightedIndex) {
-    const wasPrevHighlighted = prevProps.highlightedIndex === prevProps.index
-    const isNowHighlighted = nextProps.highlightedIndex === nextProps.index
-    return wasPrevHighlighted === isNowHighlighted
-  }
-  return true
-})
+// *extension1*
+// ListItem = React.memo(ListItem, (prevProps, nextProps) => {
+//   // Basically what react does by default
+//   if (prevProps.getItemProps !== nextProps.getItemProps) return false
+//   if (prevProps.items !== nextProps.items) return false
+//   if (prevProps.index !== nextProps.index) return false
+//   if (prevProps.selectedItem !== nextProps.selectedItem) return false
+//   // How these props are been used - we only care if the current item is highlighed or not
+//   if (prevProps.highlightedIndex !== nextProps.highlightedIndex) {
+//     const wasPrevHighlighted = prevProps.highlightedIndex === prevProps.index
+//     const isNowHighlighted = nextProps.highlightedIndex === nextProps.index
+//     return wasPrevHighlighted === isNowHighlighted
+//   }
+//   return true
+// })
+
+// *extesion2*
+ListItem = React.memo(ListItem)
 
 function App() {
   const forceRerender = useForceRerender()
