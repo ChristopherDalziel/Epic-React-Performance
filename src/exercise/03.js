@@ -60,7 +60,21 @@ function ListItem({
 }
 // 🐨 Memoize the ListItem here using React.memo
 // This can wrap the entire function above - it does appear to be a little messy though
-ListItem = React.memo(ListItem)
+// The second item passed into memo is a custom comparitor
+ListItem = React.memo(ListItem, (prevProps, nextProps) => {
+  // Basically what react does by default
+  if (prevProps.getItemProps !== nextProps.getItemProps) return false
+  if (prevProps.items !== nextProps.items) return false
+  if (prevProps.index !== nextProps.index) return false
+  if (prevProps.selectedItem !== nextProps.selectedItem) return false
+  // How these props are been used - we only care if the current item is highlighed or not
+  if (prevProps.highlightedIndex !== nextProps.highlightedIndex) {
+    const wasPrevHighlighted = prevProps.highlightedIndex === prevProps.index
+    const isNowHighlighted = nextProps.highlightedIndex === nextProps.index
+    return wasPrevHighlighted === isNowHighlighted
+  }
+  return true
+})
 
 function App() {
   const forceRerender = useForceRerender()
