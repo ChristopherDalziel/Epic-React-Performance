@@ -25,7 +25,9 @@ function Menu({
   highlightedIndex,
   selectedItem,
   // 🐨 accept listRef, virtualRows, totalHeight
-  listRef, virtualRows, totalHeight
+  listRef,
+  virtualRows,
+  totalHeight
 }) {
   return (
     // 🐨 pass the listRef to the `getMenuProps` prop getter function below:
