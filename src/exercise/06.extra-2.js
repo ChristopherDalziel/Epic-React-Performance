@@ -1,5 +1,5 @@
 // Fix "perf death by a thousand cuts"
-// http://localhost:3000/isolated/final/06.js
+// http://localhost:3000/isolated/exercise/06.extra-2.js
 
 import * as React from 'react'
 import {
